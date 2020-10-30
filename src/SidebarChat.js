@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Avatar } from '@material-ui/core'
 import "./SidebarChat.css"
 import db from "./firebase"
+import { Link } from "react-router-dom";
 function SidebarChat({ addNewChat, key, id, name }) {
 
     // // seed value is required to generate the random avataaar images.
@@ -25,13 +26,16 @@ function SidebarChat({ addNewChat, key, id, name }) {
     };
 
     return !addNewChat ? (
-        <div className="sidebarChat">
-            <Avatar src={`https://avatars.dicebear.com/api/avataaars/${id}.svg`} alt="" />
-            <div className="sidebarChat__info">
-                <h2>{name}</h2>
-                <p>Last message...</p>
+        <Link to={`/rooms/${id}`} >
+            <div className="sidebarChat">
+                <Avatar src={`https://avatars.dicebear.com/api/avataaars/${id}.svg`} alt="" />
+                <div className="sidebarChat__info">
+                    <h2>{name}</h2>
+                    <p>Last message...</p>
+                </div>
             </div>
-        </div>
+        </Link>
+
     ) : (
 
         <div className="sidebarChat" onClick={createChat} >

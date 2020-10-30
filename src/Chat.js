@@ -7,14 +7,32 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { IconButton } from '@material-ui/core';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import MicIcon from '@material-ui/icons/Mic';
-
+import {useParams } from "react-router-dom";
+import db from "./firebase"
 function Chat() {
     const [input, setInput] = useState('');   
     const [seed, setSeed] = useState('');
+    // useParams hook to fetch the pattern passed in the Url..
+    const { roomId } = useParams();
 
+    const [roomName, setRoomName] = useState("");
+
+    // we can have multiple useEffect hooks
+    // And this hook is dependent on variable called roomId.
     useEffect(() => {
-        setSeed(Math.floor(Math.random()*5000));
-    }, []);
+        if(roomId) {
+            db.collection('rooms').doc(roomId).
+            onSnapshot(snapshot => (
+                setRoomName(snapshot.data().name)
+            ))
+        }
+    },[roomId])
+
+    // we just are setting seed to roomID, 😅
+    useEffect(() => {
+        // setSeed(Math.floor(Math.random()*5000));
+        setSeed(roomId);        
+    }, [roomId]);
 
     const sendMessage = (e) => {
         e.preventDefault();
@@ -30,7 +48,7 @@ function Chat() {
                 <Avatar  src={`https://avatars.dicebear.com/api/avataaars/${seed}.svg`} />
                 {/* Header Info */}
                     <div className="chat__headerInfo">
-                        <h3>Room Name</h3>
+                        <h3>{roomName}</h3>
                         <p>Last seen at ....</p>
                     </div>
                     {/* Header Icons */}
@@ -70,4 +88,4 @@ function Chat() {
     )
 }
 
-export default Chat
+export default Chat;
