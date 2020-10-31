@@ -63,7 +63,7 @@ function Chat() {
                     <div className="chat__headerInfo">
                         <h3>{roomName}</h3>
                         <p>
-                            {new Date(messages[messages.length -1]?.timestamp?.toDate()).toUTCString()}
+                            {new Date(messages[messages.length -1]?.timestamp?.toDate()).toUTCString().slice(5,12).concat(new Date(messages[messages.length -1]?.timestamp?.toDate()).toUTCString().slice(17,25))}
                             </p>
                     </div>
                     {/* Header Icons */}
@@ -86,7 +86,7 @@ function Chat() {
                     <span className="chat__name">{message.name}</span>
                     {message.message}
                     <span className="chat__timestamp">
-                        {new Date(message.timestamp?.toDate()).toUTCString()}
+                        {new Date(message.timestamp?.toDate()).toUTCString().slice(5,12).concat(new Date(message.timestamp?.toDate()).toUTCString().slice(17,25))}
                     </span>
                 </p>
 

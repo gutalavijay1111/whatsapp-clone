@@ -46,7 +46,6 @@
     overflow: scroll;
 }
 
-
 .chat__message {
     position: relative;
     background-color: white;
@@ -54,13 +53,15 @@
     border-radius: 10px;
     width: fit-content;
     margin-bottom: 30px;
+    font-weight: 600;
 }
 
 .chat__name {
     position: absolute;
     top: -15px;
-    font-weight: 800;
+    font-weight: 700;
     font-size: xx-small;
+    color: rgb(29, 28, 28);
 
 }
 
@@ -68,6 +69,17 @@
     margin-left: auto;
     background-color: #dcf8c6;
 }
+
+.chat__reciever > .chat__name {
+    /* position: absolute;
+    top: -15px;
+    right: 5%;
+    font-weight: 700;
+    font-size: xx-small;
+    color: rgb(29, 28, 28); */
+    display: none;
+}
+
 .chat__timestamp {
     margin-left: 10px;
     font-size: xx-small;
@@ -105,37 +117,40 @@
     padding: 10px;
     color: gray;
 }
+
 @media (max-width: 600px) {
     /* CSS that should be displayed if width is equal to or less than 600px goes here */
 
     .chat {
-        flex: 0.75;
         display: flex;
         flex-direction: column;
-        width: 100vw;    
     }
     
     .chat__header{
         display: flex;
         align-items: center;
         flex-direction: column;
-        padding: 14px;
         border-bottom: 1px solid lightgray;
         width: 100%;
+        padding: 5px;
     }
     
-    
     .chat__headerInfo{
-        flex: 1;
-        padding-left: 20px;
-        /* min-width: fit-content; */
+        padding-left: 0;
     }
     
     .chat__headerInfo > h3{
+        display: grid;
+        place-items: center;
         margin-bottom: 3px;
         font-weight: 500;
     }
-    
+
+    .chat__headerInfo > p{
+        display: grid;
+        place-items: center;
+    }   
+
     .chat__headerRight {
         display: flex;
         justify-content: space-between;
@@ -143,4 +158,55 @@
         margin-right: 2vw;
     }
     
+
+    .chat__body {
+        flex: 1;
+        background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
+        background-repeat: repeat;
+        background-position: center;
+        padding: 10px;
+        padding-top: 20px;
+        overflow: scroll;
+    }
+
+    
+.chat__message {
+    position: relative;
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    width: fit-content;
+    margin-bottom: 18px;
+    font-weight: 600;
+}
+
+.chat__name {
+    position: absolute;
+    top: -15px;
+    font-weight: 700;
+    font-size: xx-small;
+    color: rgb(29, 28, 28);
+
+}
+
+.chat__reciever {
+    margin-left: auto;
+    background-color: #dcf8c6;
+}
+
+.chat__reciever > .chat__name {
+    position: absolute;
+    top: -15px;
+    right: 5%;
+    font-weight: 700;
+    font-size: xx-small;
+    color: rgb(29, 28, 28);
+}
+
+.chat__timestamp {
+
+    margin-left: 10px;
+    font-size: xx-small;
+}
+
   }

@@ -22,3 +22,66 @@ a {
     text-decoration: none;
     color: black;
 }
+
+@media (max-width: 600px) {
+    /* CSS that should be displayed if width is equal to or less than 600px goes here */
+
+    * {
+        transition-property: all;
+        transition: 200ms ease-in;
+    }
+
+    .sidebarChat {
+        display: flex;
+        flex-direction: column;
+        padding: 8px;
+        cursor: pointer;
+        border-bottom: 1px solid #f6f6f6;
+
+    }
+
+    .sidebarChat > h2{
+        font-size: 16px;
+
+    } 
+
+    .sidebarChat:hover {
+        background-color: #ebebeb;
+    }
+    
+    .sidebarChat__info {
+        margin-left: 5px;
+        line-height: 13px;
+        padding-bottom: 1px;
+    }
+
+    .sidebarChat__info > .MuiAvatar-root{
+        display: flex;
+        padding: 2px !important; 
+    }
+    
+    .sidebarChat__info > h2{
+        font-size: 14px;
+        margin-top: 4px ;
+        margin-bottom: 2px;
+        line-height: 14px;
+    }
+
+    .sidebarChat__info > p{
+        width: 75px;
+        font-size: 12px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow:hidden; 
+        color: #7B7E77; 
+        font-weight: 500;
+        letter-spacing: 0.08vw;
+        padding: 2px;
+    }    
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+    
+}
