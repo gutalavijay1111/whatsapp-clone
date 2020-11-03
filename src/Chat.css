@@ -46,14 +46,25 @@
     overflow: scroll;
 }
 
+.chat__body * {
+    overflow-anchor: none;
+}
+
+.chat__bodyAnchor {
+    overflow-anchor: auto;
+    height: 1px;
+}
+
 .chat__message {
     position: relative;
     background-color: white;
+    /* height: 100px; */
     padding: 10px;
     border-radius: 10px;
     width: fit-content;
     margin-bottom: 30px;
     font-weight: 600;
+    
 }
 
 .chat__name {
@@ -62,6 +73,10 @@
     font-weight: 700;
     font-size: xx-small;
     color: rgb(29, 28, 28);
+    background-color: white;
+    padding: 4px 6px;
+    padding-top: 1px;
+    border-radius: 5px 5px 0 0;
 
 }
 
@@ -154,8 +169,8 @@
     .chat__headerRight {
         display: flex;
         justify-content: space-between;
-        min-width: 100px;
-        margin-right: 2vw;
+        /* min-width: 100px; */
+        /* margin-right: 2vw; */
     }
     
 
@@ -169,6 +184,14 @@
         overflow: scroll;
     }
 
+    .chat__body * {
+        overflow-anchor: none;
+    }
+    
+    .chat__bodyAnchor {
+        overflow-anchor: auto;
+        height: 1px;
+    }
     
 .chat__message {
     position: relative;
@@ -176,7 +199,7 @@
     padding: 5px 10px;
     border-radius: 10px;
     width: fit-content;
-    margin-bottom: 18px;
+    margin-bottom: 25px;
     font-weight: 600;
 }
 
@@ -186,7 +209,10 @@
     font-weight: 700;
     font-size: xx-small;
     color: rgb(29, 28, 28);
-
+    background-color: white;
+    padding: 4px 6px;
+    padding-top: 1px;
+    border-radius: 5px 5px 0 0;
 }
 
 .chat__reciever {
@@ -204,7 +230,7 @@
 }
 
 .chat__timestamp {
-
+    white-space: nowrap;
     margin-left: 10px;
     font-size: xx-small;
 }

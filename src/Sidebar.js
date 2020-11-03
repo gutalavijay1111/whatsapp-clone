@@ -8,6 +8,8 @@ import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import SidebarChat from "./SidebarChat"
 import db from "./firebase"
 import { useStateValue } from './StateProvider';
+import AddNewChat from "./AddNewChat"
+
 function Sidebar() {
 
     const [{user}, dispatch] = useStateValue();
@@ -53,7 +55,7 @@ function Sidebar() {
             
             {/* Rooms / Friends */}
             <div className="sidebar__chats">
-                <SidebarChat addNewChat/>
+                <AddNewChat />
                 {rooms.map(room => (
                     <SidebarChat key={rooms.id} id={room.id}
                      name={room.data.name} />

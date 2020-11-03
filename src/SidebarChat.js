@@ -3,8 +3,14 @@ import { Avatar } from '@material-ui/core'
 import "./SidebarChat.css"
 import db from "./firebase"
 import { Link } from "react-router-dom";
-function SidebarChat({ addNewChat, key, id, name }) {
+import AddNewChat from "./AddNewChat"
+import {useStateValue} from "./StateProvider"
+
+function SidebarChat({ addNewChat, id, name }) {
     const [messages, setMessages] = useState("");
+    const [{ user }, dispatch] = useStateValue();
+    const [allowedUsers, setAllowedUsers] = useState([]);
+
     // // seed value is required to generate the random avataaar images.
     // // setting the seed value in state.
     // const [seed, setSeed] = useState('');
@@ -22,18 +28,16 @@ function SidebarChat({ addNewChat, key, id, name }) {
         }
     },[id])
 
-    const createChat = () => {
-        const roomName = prompt("Please enter a name for Room");
+    useEffect(() => {
+        if (id) {
+            db.collection('rooms').doc(id).onSnapshot(snapshot => (
+                setAllowedUsers(snapshot.data().allowed_users)
+            ))
+            console.log(allowedUsers)    
+        }
+    },[id])
 
-        if(roomName) {
-            //do database stuff, if room name entered.
-            db.collection("rooms").add({
-                name: roomName,
-            })
-        };
-    };
-
-    return !addNewChat ? (
+    return allowedUsers.includes(user.email) ? (
         <Link to={`/rooms/${id}`} >
             <div className="sidebarChat">
                 <Avatar src={`https://avatars.dicebear.com/api/bottts/${id}.svg`} alt="" />
@@ -46,10 +50,13 @@ function SidebarChat({ addNewChat, key, id, name }) {
 
     ) : (
 
-        <div className="sidebarChat" onClick={createChat} >
-            <h2>Add Chat Room</h2>
-        </div> 
+        // <div className="sidebarChat" onClick={createChat} >
+        //     <h2>Add Chat Room</h2>
+        // </div> 
 
+        // 
+        <p></p>
+        // <ScrollDialog />
     )
 }
 

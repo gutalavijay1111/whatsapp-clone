@@ -16,7 +16,7 @@ function Chat() {
     const [seed, setSeed] = useState('');
     // useParams hook to fetch the pattern passed in the Url..
     const { roomId } = useParams();
-
+    const [allowedUsers, setAllowedUsers] = useState([]);
     const [roomName, setRoomName] = useState("");
     const [messages, setMessages] = useState([]);
     const [{ user }, dispatch] = useStateValue();
@@ -41,6 +41,15 @@ function Chat() {
         setSeed(roomId);        
     }, [roomId]);
 
+    useEffect(() => {
+        if (roomId) {
+            db.collection('rooms').doc(roomId).onSnapshot(snapshot => (
+                setAllowedUsers(snapshot.data().allowed_users)
+            ))
+            console.log(allowedUsers)    
+        }
+    },[roomId])
+
     const sendMessage = (e) => {
         e.preventDefault();
         console.log("You typed >>>", input)
@@ -53,12 +62,12 @@ function Chat() {
         setInput("");
     }
 
-    return (
+    return allowedUsers.includes(user.email) ? (
         <div className="chat">
             {/* Chat Header */}
             <div className="chat__header">
                 {/* avatars */}
-                <Avatar  src={`https://avatars.dicebear.com/api/avataaars/${seed}.svg`} />
+                <Avatar  src={`https://avatars.dicebear.com/api/bottts/${seed}.svg`} />
                 {/* Header Info */}
                     <div className="chat__headerInfo">
                         <h3>{roomName}</h3>
@@ -91,7 +100,7 @@ function Chat() {
                 </p>
 
                 ) )}
-
+            <div className="chat__bodyAnchor"></div>
             </div>
             {/* Chat Footer */}
             <div className="chat__footer" >
@@ -105,6 +114,8 @@ function Chat() {
                 <MicIcon />
             </div>
         </div>
+    ) : (
+        <p></p>
     )
 }
 

@@ -1,0 +1,13 @@
+.MuiTypography-h6 {
+    margin: 0 auto !important;
+
+}
+
+.addNewChat__input {
+    padding-bottom: 10px !important;
+    padding-left: 18px !important;
+}
+
+.addNewChat__input > label {
+    padding-left: 22px !important;
+}

@@ -20,10 +20,12 @@
   .app__body {
     display: flex;
     background-color: #ededed;
-    height: 100vh;
+    height: 90vh;
     width: 100vw;
     margin-top: 0;
     overflow: scroll;
+    margin-bottom: 10px;
+    /* overflow-x: hidden; */
   }
   
 }
