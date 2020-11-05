@@ -9,13 +9,13 @@ import SidebarChat from "./SidebarChat"
 import db from "./firebase"
 import { useStateValue } from './StateProvider';
 import AddNewChat from "./AddNewChat"
+import Search from "./Search"
+import Rooms from "./Rooms"
 
 function Sidebar() {
 
-    const [{user}, dispatch] = useStateValue();
     const [rooms, setRooms] = useState([]);
-
-
+    const [{ user, searchText }, dispatch] = useStateValue('');
     useEffect(() => {
         db.collection('rooms').onSnapshot((snapshot) => 
             ( setRooms(
@@ -47,21 +47,15 @@ function Sidebar() {
 
             {/* Search */}
             <div className="sidebar__search">
-                <div className="sidebar__searchContainer">
-                    <SearchOutlinedIcon />
-                    <input placeholder="Search or start new chat" type="text" />
-                </div>
+                <Search />
             </div>
             
             {/* Rooms / Friends */}
             <div className="sidebar__chats">
-                <AddNewChat />
-                {rooms.map(room => (
-                    <SidebarChat key={rooms.id} id={room.id}
-                     name={room.data.name} />
-                ))}
-
+            <AddNewChat />
+            <Rooms searchText={searchText}/>
             </div>
+ 
         </div>
     )
 }

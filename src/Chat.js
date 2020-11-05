@@ -20,6 +20,20 @@ function Chat() {
     const [roomName, setRoomName] = useState("");
     const [messages, setMessages] = useState([]);
     const [{ user }, dispatch] = useStateValue();
+
+
+
+    useEffect(() => {
+        if (roomId) {
+            setAllowedUsers([])
+            db.collection('rooms').doc(roomId).onSnapshot(snapshot => (
+                setAllowedUsers(snapshot.data().allowed_users)
+            ))
+            console.log(allowedUsers)    
+        }
+    },[roomId])
+
+
     // we can have multiple useEffect hooks
     // And this hook is dependent on variable called roomId.
     useEffect(() => {
@@ -40,15 +54,6 @@ function Chat() {
         // setSeed(Math.floor(Math.random()*5000));
         setSeed(roomId);        
     }, [roomId]);
-
-    useEffect(() => {
-        if (roomId) {
-            db.collection('rooms').doc(roomId).onSnapshot(snapshot => (
-                setAllowedUsers(snapshot.data().allowed_users)
-            ))
-            console.log(allowedUsers)    
-        }
-    },[roomId])
 
     const sendMessage = (e) => {
         e.preventDefault();
@@ -115,7 +120,9 @@ function Chat() {
             </div>
         </div>
     ) : (
-        <p></p>
+        <div className="chat__bodyBored">
+        <img className="panda" src="https://static.boredpanda.com/blog/wp-content/uploads/2016/02/experience-nyc-in-30-outstanding-animated-gifs-12__605.gif"></img>
+        </div>
     )
 }
 

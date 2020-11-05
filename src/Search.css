@@ -1,0 +1,55 @@
+.sidebar__searchContainer {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+    height: 35px;
+    border-radius: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.sidebar__searchContainer > input{
+    border: none;
+    margin-left: 5px;
+}
+
+.sidebar__searchContainer > input:focus{
+    outline-width: 0;
+}
+
+.sidebar__searchContainer > .MuiSvgIcon-root{
+    margin: 0 10px;
+    color: gray;
+}
+
+.sidebar__searchContainer > .search__button{
+    margin-right: 1vw; 
+    border: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    border-radius: 99px;
+    opacity:0;
+}
+
+.sidebar__searchContainer > button:hover {
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+    transition: all 200ms ease-in;
+}
+
+.search__input:not(:placeholder-shown) + .search__button {
+    transition: all 200ms ease-in;
+    visibility: visible;
+	opacity: 1;
+}
+
+.search__input:not(:placeholder-shown) + .search__suggestions {
+    align-items: center;
+}

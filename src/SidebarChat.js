@@ -11,6 +11,7 @@ function SidebarChat({ addNewChat, id, name }) {
     const [{ user }, dispatch] = useStateValue();
     const [allowedUsers, setAllowedUsers] = useState([]);
 
+    
     // // seed value is required to generate the random avataaar images.
     // // setting the seed value in state.
     // const [seed, setSeed] = useState('');
@@ -49,14 +50,8 @@ function SidebarChat({ addNewChat, id, name }) {
         </Link>
 
     ) : (
-
-        // <div className="sidebarChat" onClick={createChat} >
-        //     <h2>Add Chat Room</h2>
-        // </div> 
-
-        // 
-        <p></p>
-        // <ScrollDialog />
+        <p></p>  // we must return somthing for rendering
+                // or else.  It'll throw error.
     )
 }
 

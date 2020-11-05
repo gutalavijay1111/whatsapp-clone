@@ -8,10 +8,9 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Checkbox from '@material-ui/core/Checkbox';
 import Avatar from '@material-ui/core/Avatar';
 import db from "./firebase"
-import IconButton from '@material-ui/core/IconButton';
-import DoneIcon from '@material-ui/icons/Done';
-import { useStateValue } from './StateProvider';
-import { actionTypes } from './reducer';
+import {useStateValue} from "./StateProvider"
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -20,11 +19,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
  function SimpleDialog(props) {
+  const [{ user }, dispatch] = useStateValue();
   const [emails, setEmails] = useState([]);
   const classes = useStyles();
-  const [checked, setChecked] = React.useState(["gutalavijaykumar@gmail.com"]);
+  const [checked, setChecked] = React.useState([user.email]);
 
 
   const handleToggle = (value) => () => {

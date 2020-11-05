@@ -23,14 +23,15 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import SimpleDialog from "./SimpleDialog"
 import "./AddNewChat.css"
 import db from "./firebase"
 import TextField from '@material-ui/core/TextField'
+import {useStateValue} from "./StateProvider"
 
 export default function ScrollDialog() {
+    const [{user}, dispatch] = useStateValue();
     const [checkedUser, setCheckedUser] = useState([]);
     const [open, setOpen] = React.useState(false);
     const [scroll, setScroll] = React.useState('paper');
@@ -60,20 +61,31 @@ export default function ScrollDialog() {
       console.log("this is from createGroup")
       console.log("Group created with this users>>",checkedUser)
     
-      db.collection("rooms").add({
-        name: roomName,
-        allowed_users: checkedUser,
-    })
-    .then(function(docRef) {
-        console.log("Document written with ID: ", docRef.id);
-    })
-    .catch(function(error) {
-        console.error("Error adding document: ", error);
-    });
+      if (!checkedUser.includes(user.email)) {
+          checkedUser.push(user.email)
+      }
 
-      setCheckedUser([])
-      setRoomName('')
-  }
+      if (roomName === "" ) {
+        alert("Please enter a Room Name😉✌");
+
+    }
+    else {     
+        db.collection("rooms").add({
+            name: roomName,
+            allowed_users: checkedUser,
+        })
+        .then(function(docRef) {
+            console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function(error) {
+            console.error("Error adding document: ", error);
+        });
+
+        setCheckedUser([])
+        setRoomName('')
+    }
+}
+
 
   const descriptionElementRef = React.useRef(null);
   React.useEffect(() => {
